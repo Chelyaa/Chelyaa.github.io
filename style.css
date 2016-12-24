@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Space+Mono:400,700');
+
+body {
+	overflow: hidden;
+}
+div {
+	position: absolute;
+	padding: 10px 20px;
+	top: 0;
+	left: 0;
+	width: 200px;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+a {
+	display: block;
+	text-decoration: none;
+	font-size: 16px;
+	color: black;
+	transition: all 0.3s;
+	font-family: 'Space Mono', monospace;
+	padding: 5px 0;
+}
+
+a:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
