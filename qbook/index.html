@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>QBook</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body ng-app="QBook" ng-controller="QBookCtrl">
+	<div class="side">
+		<div class="side-bcg"></div>
+		<div class="side-menu">
+			<button id="close" class="close-button"></button>
+			<div class="header">
+		    <h1 class="title"><span>Q</span>Book</h1>
+		  </div>
+		  <div class="book-list">
+				<ul>
+					<li class="book-list-item" ng-repeat="book in books track by $index" ng-click="setCurrentBook(books[$index])">
+						{{ book.name }}
+					</li>
+					<div class="buttons">
+				<button>Create new</button>
+		  </div>
+				</ul>
+		  </div>
+	  </div>
+  </div>
+  <div class="content container-fluid">
+  	<div class="row">
+  		<div class="col-md-3">
+  			<button id="show" class="menu-show-button"></button>
+  		</div>
+  	</div>
+  	<div class="row">		
+
+		  <div class="chapters col-md-3">
+		  	<p ng-show="!currentChapters[0]">please choose a book</p>
+		  	<div class="chapters-list">
+		  	<ul>
+					<li ng-repeat="chapter in currentChapters" ng-click="setCurrentChapter(currentBook[chapter], chapter)">
+						{{ chapter }}
+					</li>
+				</ul>
+				</div>
+		  </div>
+
+		  <div class="book col-md-6">
+		  	<h1 class="gray" ng-show="!currentChapterName">please choose a chapter</h1>
+  			<h1 ng-show="!!currentChapterName" ng-bind="currentChapterName"></h1>
+  			<div class="text-block">
+					<div class="text" ng-bind="currentText"></div>
+					<div class="text-block-buttons">
+						<button class="text-block-button" ng-repeat="(key, value) in currentButtons" ng-click="goToNextTextBlock(value.link)">{{value.value}}</button>
+					</div>
+  			</div>
+  		</div>
+
+		  <div class="info col-lg-3">
+		  	<p class="gray" ng-show="!currentBookName">please choose a book</p>
+		  	<h1 ng-bind="currentBookName"></h1>
+		  	<h3>Description:</h3>
+		  	<div class="description">
+		  		<p ng-bind="currentDescription"></p>
+		  	</div>
+		  	<button>Edit this book</button>
+		  </div>
+	  </div>
+  </div>
+
+	<script src="js/popup.min.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+	<script src="index.js"></script>
+	<script>
+		var options = {
+			window : document.getElementsByClassName('side')[0],
+			content : document.getElementsByClassName('side-menu')[0],
+			background : document.getElementsByClassName('side-bcg')[0],
+			interactiveBcg : false
+		}
+		var popup = new Popup(options);
+
+		popup.setAnimationForShow({
+			animationBcg : {
+				animation : 'fade',
+				duration : 200
+			},
+			animationContent : {
+				animation : ['dropRight', 'fade'],
+				duration : 200
+			}
+		});
+		popup.setAnimationForHide({
+			animationBcg : {
+				animation : 'fade',
+				duration : 200
+			},
+			animationContent : {
+				animation : ['dropLeft', 'fade'],
+				duration : 200
+			}
+		});
+
+		var buttShow = document.getElementById("show");
+		buttShow.addEventListener('click', function(){
+			popup.show();
+		});
+
+		var buttClose = document.getElementById("close");
+		buttClose.onclick = function(){
+			popup.hide();
+		}
+	</script>
+</body>
+</html>
