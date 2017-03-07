@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Text Generator</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="text-generator" class="container blocks">
+		<div class="row">
+			<div class="col-lg-12" style="text-align: center;">
+				<h2>Генератор текста:</h2>
+			</div>
+		</div>
+		<div class="row form-row" name="form" id="form">
+			<div class="col-lg-3"></div>
+			<div class="col-lg-3">
+				<label for="length">Длина:</label>
+				<input id="length" name="length" type="text" value="1">
+				<span>слов</span></br>
+				"Правильное" начало
+				<input id="check" name="check" type="checkbox" checked="checked">
+			</div>
+			<div class="col-lg-6 butt">
+				<button class="btn btn-outline-success btn-lg" onclick="generateText()">Сгенерировать</button>
+			</div>
+		</div>
+		<div class="row" id="text">
+			<div class="col-lg-12"></div>
+		</div>
+	</div>
+
+	<div class="container" id="dict-generator">
+		<div class="row">
+			<div class="col-lg-12" style="text-align: center;">
+				<h2>Генератор словаря:</h2>
+			</div>
+		</div>
+		<div class="row form-row">
+			<div class="col-lg-2"></div>
+			<div class="col-lg-4">
+				Сюда надо вставить исходный текст, из которого будет составлен словарь
+			</div>
+			<div class="col-lg-6">
+				<button class="btn btn-outline-success btn-lg" onclick="generateDict()">Сгенерировать</button>
+				<button class="btn btn-outline-info btn-lg" onclick="writeDict()">Показать словарь<br><span>(может долго рендерится)</span></button>
+			</div>
+		</div>
+		<div class="row">
+			<textarea class="form-control" rows="10" id="str"></textarea>
+			<span id="info"></span>
+		</div>
+	</div>
+
+	<div class="container" id="dict-table">
+		
+	</div>
+	
+	<script src="startstr.js"></script>
+	<script src="text-generator.js"></script>
+	<script src="index.js"></script>
+</body>
+</html>
