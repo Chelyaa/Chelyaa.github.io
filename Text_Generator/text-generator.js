@@ -36,7 +36,7 @@ var createDict = function(str) {
 		}
 	}
 
-	document.getElementById("info").innerHTML = "Количество слов в словаре: " + dictionary.length;
+	document.getElementById("info-dict").innerHTML = "Количество слов в словаре: " + dictionary.length;
 	return dictionary;
 }
 
