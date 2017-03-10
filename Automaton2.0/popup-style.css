@@ -1,0 +1,18 @@
+.windowHidden {
+	display: none;
+}
+.windowActive {
+	display: block;
+}
+
+.withoutOverflow {
+	overflow: hidden;
+}
+
+.empty-bcg {
+	position: absolute;
+	display: none;
+	top: -999999px;
+	left: -999999px;
+	visibility: hidden;
+}
