@@ -4,8 +4,12 @@
 	<meta charset="UTF-8">
 	<title>FaceBot</title>
 </head>
-<body>
-	
+<body id="main">
+	<form name="uploadimages" method="post" enctype="multipart/form-data">
+		<input id="uploadimage" type="file" name="uploadimage">
+
+	</form>
+	<button onclick="setimage()">Upload</button>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="index.js"></script>
