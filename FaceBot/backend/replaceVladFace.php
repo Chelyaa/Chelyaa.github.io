@@ -1,7 +1,9 @@
 <?php
 
-function replaceVladFace($dest, $newname) {
+function replaceVladFace($dest, $newname) {//echo $dest;
 	$faces = face_detect('dest/'.$dest);
+
+	// print_r($faces);
 
 	$dest = imagecreatefromjpeg('dest/'.$dest);
 	$patt = "src/vlad.jpeg";
@@ -9,14 +11,13 @@ function replaceVladFace($dest, $newname) {
 	imagealphablending($dest, false);
 	imagesavealpha($dest, true);
 	for($i = 0; $i < count($faces); $i++) {
+		$face = $faces[$i]->faceRectangle;
 		list($width, $height) = getimagesize($patt);
 
-		$x = $faces[$i]->top_left->x;
-		$y = $faces[$i]->top_left->y;
-		$x1 = $faces[$i]->bottom_right->x;
-		$y1 = $faces[$i]->bottom_right->y;
-		$newwidth = $x1 - $x;
-		$newheight = $y1 - $y;
+		$x = $face->left;
+		$y = $face->top;
+		$newwidth = $face->width;
+		$newheight = $face->height;
 		$percent = $newwidth / $width;
 		$newwidth = $width * $percent;
 		$newheight = $height * $percent;

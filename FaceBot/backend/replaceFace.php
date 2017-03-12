@@ -1,13 +1,13 @@
 <?php
 function replaceFace($destPath, $srcPath, $newname) {
-	$faceSrc = face_detect('src/'.$srcPath)[0];
-	$xSrc = $faceSrc->top_left->x;
-	$ySrc = $faceSrc->top_left->y;
-	$xSrc1 = $faceSrc->bottom_right->x;
-	$ySrc1 = $faceSrc->bottom_right->y;
+	$faceSrc = face_detect('src/'.$srcPath)[0]->faceRectangle;
+	$xSrc = $faceSrc->left;
+	$ySrc = $faceSrc->top;
+	$widthSrc = $faceSrc->width;
+	$heightSrc = $faceSrc->height;
 	$faces = face_detect('dest/'.$destPath);
 
-	$src = cropImage('src/'.$srcPath, $xSrc, $ySrc, $xSrc1-$xSrc, $ySrc1-$ySrc);
+	$src = cropImage('src/'.$srcPath, $xSrc, $ySrc, $widthSrc, $heightSrc);
 	imagejpeg($src, 'src/'.$srcPath);
 
 	$dest = imagecreatefromjpeg('dest/'.$destPath);
@@ -16,14 +16,13 @@ function replaceFace($destPath, $srcPath, $newname) {
 	imagealphablending($dest, false);
 	imagesavealpha($dest, true);
 	for($i = 0; $i < count($faces); $i++) {
+		$face = $faces[$i]->faceRectangle;
 		list($width, $height) = getimagesize($patt);
 
-		$x = $faces[$i]->top_left->x;
-		$y = $faces[$i]->top_left->y;
-		$x1 = $faces[$i]->bottom_right->x;
-		$y1 = $faces[$i]->bottom_right->y;
-		$newwidth = $x1 - $x;
-		$newheight = $y1 - $y;
+		$x = $face->left;
+		$y = $face->top;
+		$newwidth = $face->width;
+		$newheight = $face->height;
 		$percent = $newwidth / $width;
 		$newwidth = $width * $percent;
 		$newheight = $height * $percent;
