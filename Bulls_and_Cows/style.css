@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Ranga:400,700');
+@import url('https://fonts.googleapis.com/css?family=Dosis:400,700');
+
+li {
+	list-style-type: none;
+}
+ul {
+	margin-left: 0;
+	padding-left: 0;
+}
+
+#start-button {
+	width: 100%;
+	color: white;
+	font-size: 3em;
+}
+#start-button:hover {
+	cursor: pointer;
+}
+.title-row {
+	margin-top: 50px;
+	text-align: center;
+}
+.title {
+	font-size: 6em;
+	font-family: 'Ranga', cursive;
+}
+
+.dialogue-panel {
+	width: 300px;
+	margin: 0 auto;
+	min-height: 600px;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	padding: 10px 20px;
+	border: 2px solid #494949;
+	border-radius: 4px;
+}
+.dialogue {
+	position: absolute;
+	top: 10px;
+	overflow-y: auto;
+	height: 490px;
+	width: 260px;
+}
+.input {
+	position: relative;
+	bottom: -500px;
+}
+.input .form-control {
+	width: 215px;
+	padding: 4px 4px;
+	font-size: 2em;
+	font-family: 'Dosis', sans-serif;
+}
+.input button {
+	font-family: 'Dosis', sans-serif;
+}
+.input button:hover {
+	cursor: pointer;
+}
