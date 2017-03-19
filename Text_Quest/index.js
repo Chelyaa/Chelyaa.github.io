@@ -2,11 +2,17 @@ var currChapter = 0;
 
 showBlocks("first--1");
 function goTo() {
-	ids = this.className.split(" ");console.log(ids);
+	ids = this.className.split(" ");
 	var pageNext = document.getElementById(ids[1]),
-			pageCurr = document.getElementById(ids[0]);
+			pageCurr = document.getElementById(ids[0]),
+			field = document.getElementById("field");
 
-	showBlocks(ids[1]);
+	field.childNodes[1].classList.remove('active');
+	field.childNodes[1].classList.add('passive-opacity');
+
+	setTimeout(function() {
+		showBlocks(ids[1]);
+	}, 300);
 }
 
 function showBlocks(elId) {
@@ -28,6 +34,7 @@ function showBlocks(elId) {
 		if(i >= blocks.length) {
 			field.childNodes[1].classList.remove('passive-opacity');
 			field.childNodes[1].classList.add('active');
+			i=0;
 			clearInterval(timer);
 		} else {
 			blocks[i].classList.remove('passive-display');
@@ -36,7 +43,7 @@ function showBlocks(elId) {
 			field.childNodes[0].scrollTop = field.childNodes[0].scrollHeight;
 			i++;
 		}
-	}, 500);
+	}, 1500);
 }
 
 function showLinks(page, id) {
