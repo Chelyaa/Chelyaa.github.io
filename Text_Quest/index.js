@@ -1,33 +1,42 @@
-showBlocks("first");
-function goTo(pageNextId, pageCurrId) {
-	var pageNext = document.getElementById(pageNextId),
-			pageCurr = document.getElementById(pageCurrId);
-			
-	pageNext.classList.remove('passive-display');
-	pageNext.classList.add('active');
-	pageCurr.classList.remove('active');
-	pageCurr.classList.add('passive-display');
+var currChapter = 0;
 
-	showBlocks(pageNextId);
+showBlocks("first--1");
+function goTo() {
+	ids = this.className.split(" ");console.log(ids);
+	var pageNext = document.getElementById(ids[1]),
+			pageCurr = document.getElementById(ids[0]);
+
+	showBlocks(ids[1]);
 }
 
 function showBlocks(elId) {
-	var page = document.getElementById(elId),
-			blocks = page.childNodes[1].childNodes;
+	var field = document.getElementById("field"),
+			page = document.getElementById(elId),
+			content = parse(page);
+
+	if(elId.split("--")[1] != currChapter) {
+		render(content, true);
+		currChapter = elId.split("--")[1];
+		document.getElementById("chapter").innerHTML = currChapter;
+	} else {
+		render(content, false);
+	}
+
+	var blocks = field.childNodes[0].childNodes;
 
 	var i = 0, timer = setInterval(function() {
 		if(i >= blocks.length) {
-			showLinks(page, elId);
+			field.childNodes[1].classList.remove('passive-opacity');
+			field.childNodes[1].classList.add('active');
 			clearInterval(timer);
 		} else {
-			if(blocks[i].nodeName == "SPAN" && issetClass(blocks[i], elId)) {
-				blocks[i].classList.remove('passive-opacity');
-				blocks[i].classList.add('active');
-				page.childNodes[1].scrollTop = page.childNodes[1].scrollHeight;
-			}
+			blocks[i].classList.remove('passive-display');
+			blocks[i].classList.add('active');
+			blocks[i].style.opacity = '1';
+			field.childNodes[0].scrollTop = field.childNodes[0].scrollHeight;
 			i++;
 		}
-	}, 100);
+	}, 500);
 }
 
 function showLinks(page, id) {
@@ -40,10 +49,78 @@ function showLinks(page, id) {
 	}
 }
 
+function parse(el) {
+	var childs = el.childNodes,
+	content = {text: [], links: []};
+	for(var i = 0; i < childs.length; i++) {
+		if(issetClass(childs[i], "text")) {
+			for(var j = 0; j < childs[i].childNodes.length; j++) {
+				if(childs[i].childNodes[j].nodeName === "SPAN") {
+					var span = childs[i].childNodes[j];
+					if(issetClass(span, "ch")) {
+						content.text.push(["ch", span.innerHTML]);
+					} else {
+						content.text.push(["au", span.innerHTML]);
+					}
+				}
+			}
+		} else if(issetClass(childs[i], "links")) {
+			for(var j = 0; j < childs[i].childNodes.length; j++) {
+				if(childs[i].childNodes[j].nodeName === "BUTTON") {
+					var link = childs[i].childNodes[j];
+					content.links.push([link.className, link.innerHTML]);
+				}
+			}
+		}
+	}
+
+	return content;
+}
+
+function render(content, isUpdate) {
+	var field = document.getElementById("field");
+
+	if(!field.childNodes.length) {
+		text = document.createElement("div");
+		links = document.createElement("div");
+
+		text.className = "text";
+		links.className = "links passive-opacity";
+		field.appendChild(text);
+		field.appendChild(links);
+	} else {
+		text = field.childNodes[0];
+		links = field.childNodes[1];
+		links.innerHTML = "";
+		if(isUpdate) {
+			text.innerHTML = "";
+		}
+	}
+
+	var span;
+	for(var i = 0; i < content.text.length; i++) {
+		span = document.createElement("span");
+		span.className = content.text[i][0] === "ch" ? "ch passive-display" : "au passive-display";
+		span.innerHTML = content.text[i][1];
+		text.appendChild(span);
+	}
+
+	var link;
+	for(var i = 0; i < content.links.length; i++) {
+		butt = document.createElement("button");
+		butt.innerHTML = content.links[i][1];
+		butt.className = content.links[i][0];
+		butt.onclick = goTo;
+		links.appendChild(butt);
+	}
+}
+
 function issetClass(el, className) {
-	for(var i = 0; i < el.classList.length; i++) {
-		if(el.classList[i] === className) 
-			return true;
+	if(el.classList) {
+		for(var i = 0; i < el.classList.length; i++) {
+			if(el.classList[i] === className) 
+				return true;
+		}
 	}
 
 	return false;
