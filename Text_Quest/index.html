@@ -8,34 +8,34 @@
 </head>
 <body>
 	<div class="game">
-		<div class="page active" id="first">
+		<p class="chapter">-- Часть <span id="chapter">1</span> --</p>
+		<div class="field" id="field"></div>
+		<div class="page passive-display" id="first--1">
 			<div class="text">
-				<span class="ch passive-opacity first">hello</span>
-				<span class="ch passive-opacity first">It's me</span>
+				<span class="ch passive-opacity">hello</span>
+				<span class="ch passive-opacity">It's me</span>
 				<span class="au passive-opacity">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere alias nostrum cumque, iste ipsum voluptatum provident porro saepe consequatur quo error obcaecati et possimus fugiat inventore illum facilis non minus.</span>
-				<span class="au passive-opacity first">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere alias nostrum cumque, iste ipsum voluptatum provident porro saepe consequatur quo error obcaecati et possimus fugiat inventore illum facilis non minus.</span>
-				<span class="au passive-opacity first">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere alias nostrum cumque, iste ipsum voluptatum provident porro saepe consequatur quo error obcaecati et possimus fugiat inventore illum facilis non minus.</span>
-				<span class="au passive-opacity first">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere alias nostrum cumque, iste ipsum voluptatum provident porro saepe consequatur quo error obcaecati et possimus fugiat inventore illum facilis non minus.</span>
-				<span class="au passive-opacity first">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere alias nostrum cumque, iste ipsum voluptatum provident porro saepe consequatur quo error obcaecati et possimus fugiat inventore illum facilis non minus.</span>
+				<span class="au passive-opacity">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere alias nostrum cumque, iste ipsum voluptatum provident porro saepe consequatur quo error obcaecati et possimus fugiat inventore illum facilis non minus.</span>
+				<span class="au passive-opacity">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere alias nostrum cumque, iste ipsum voluptatum provident porro saepe consequatur quo error obcaecati et possimus fugiat inventore illum facilis non minus.</span>
+				<span class="au passive-opacity">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere alias nostrum cumque, iste ipsum voluptatum provident porro saepe consequatur quo error obcaecati et possimus fugiat inventore illum facilis non minus.</span>
+				<span class="au passive-opacity">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere alias nostrum cumque, iste ipsum voluptatum provident porro saepe consequatur quo error obcaecati et possimus fugiat inventore illum facilis non minus.</span>
+			</div>
+			<div class="links">
+				<button class="first--1 page2--2">Go to page2</button>
+				<button class="first--1 page3">Go to page3</button>
+			</div>
+		</div>
+		<div class="page passive-display" id="page2--2">
+			<div class="text">
 				<span class="au passive-opacity page2">hewtetqetergwehwrthwrht</span>
 				<span class="ch passive-opacity page2">asdf</span>
 				<span class="au passive-opacity page2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere alias nostrum cumque, iste ipsum voluptatum provident porro saepe consequatur quo error obcaecati et possimus fugiat inventore illum facilis non minus.</span>
 				<span class="au passive-opacity page2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere alias nostrum cumque, iste ipsum voluptatum provident porro saepe consequatur quo error obcaecati et possimus fugiat inventore illum facilis non minus.</span>
 				<span class="au passive-opacity page2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere alias nostrum cumque, iste ipsum voluptatum provident porro saepe consequatur quo error obcaecati et possimus fugiat inventore illum facilis non minus.</span>
 			</div>
-			<div class="links">
-				<button class="first-link passive-opacity" onclick="goTo('page2', 'first');">Go to page2</button>
-				<button class="first-link passive-opacity" onclick="goTo('page3', 'first');">Go to page3</button>
-				<button class="page2-link passive-opacity" onclick="goTo('page2', 'page2');">asdf</button>
-				<button class="page2-link passive-opacity" onclick="goTo('page3', 'page2');">sadfsdf</button>
-			</div>
-		</div>
-		<div class="page passive-display" id="page2">
-			<div class="text">
-				
-			</div>
 			<div class="links passive-opacity">
-				
+				<button class="page2 first">asdf</button>
+				<button class="page2 page3">sadfsdf</button>
 			</div>
 		</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
