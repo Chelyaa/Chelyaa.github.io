@@ -3,9 +3,9 @@ var currChapter = 0;
 showBlocks("first--1");
 function goTo() {
 	ids = this.className.split(" ");
-	var pageNext = document.getElementById(ids[1]),
-			pageCurr = document.getElementById(ids[0]),
-			field = document.getElementById("field");
+	var pageNext = $("#"+ids[1]),
+			pageCurr = $("#"+ids[0]),
+			field = $("field");
 
 	field.childNodes[1].classList.remove('active');
 	field.childNodes[1].classList.add('passive-opacity');
@@ -16,8 +16,8 @@ function goTo() {
 }
 
 function showBlocks(elId) {
-	var field = document.getElementById("field"),
-			page = document.getElementById(elId),
+	var field = $("#field")[0],
+			page = $("#"+elId)[0],
 			content = parse(page),
 			blocks,
 			text;
@@ -25,12 +25,12 @@ function showBlocks(elId) {
 	if(elId.split("--")[1] != currChapter) {
 		blocks = render(content, true);
 		currChapter = elId.split("--")[1];
-		document.getElementById("chapter").innerHTML = currChapter;
+		$("#chapter").innerHTML = currChapter;
 	} else {
 		blocks = render(content, false);
 	}
 
-	text = field.childNodes[0];
+	text = $(".text")[0];
 	var i = 0, timer = setInterval(function() {
 		if(i >= blocks.length) {
 			field.childNodes[1].classList.remove('passive-opacity');
@@ -39,8 +39,11 @@ function showBlocks(elId) {
 			clearInterval(timer);
 		} else {
 			text.appendChild(blocks[i]);
-			blocks[i].classList.remove('passive-opacity');
-			blocks[i].classList.add('active');
+			text.children[i].animate({
+				opacity: 1
+			}, 1000);
+			// blocks[i].classList.remove('passive-opacity');
+			// blocks[i].classList.add('active');
 			field.childNodes[0].scrollTop = field.childNodes[0].scrollHeight;
 			i++;
 		}
@@ -86,7 +89,7 @@ function parse(el) {
 }
 
 function render(content, isUpdate) {
-	var field = document.getElementById("field"),
+	var field = $("#field")[0],
 			spans = [];
 
 	if(!field.childNodes.length) {
@@ -108,8 +111,9 @@ function render(content, isUpdate) {
 
 	var span;
 	for(var i = 0; i < content.text.length; i++) {
-		span = document.createElement("span");
-		span.className = content.text[i][0] === "ch" ? "ch passive-opacity" : "au passive-opacity";
+		span = $("<span></span>")[0];
+		// span.className = content.text[i][0] === "ch" ? "ch passive-opacity" : "au passive-opacity";
+		span.className = content.text[i][0] === "ch" ? "ch" : "au";
 		span.innerHTML = content.text[i][1];
 		spans.push(span);
 	}
