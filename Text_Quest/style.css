@@ -33,8 +33,7 @@ body {
 .text span {
 	padding: 9px 10px;
 	margin: 13px 0;
-	/*transition: all 1s linear;*/
-	opacity: 0;
+	transition: all 0.8s linear;
 }
 .ch {
 	border-left: 4px solid #FF5521;
