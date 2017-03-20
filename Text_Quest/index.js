@@ -18,28 +18,29 @@ function goTo() {
 function showBlocks(elId) {
 	var field = document.getElementById("field"),
 			page = document.getElementById(elId),
-			content = parse(page);
+			content = parse(page),
+			blocks,
+			text;
 
 	if(elId.split("--")[1] != currChapter) {
-		render(content, true);
+		blocks = render(content, true);
 		currChapter = elId.split("--")[1];
 		document.getElementById("chapter").innerHTML = currChapter;
 	} else {
-		render(content, false);
+		blocks = render(content, false);
 	}
 
-	var blocks = field.childNodes[0].childNodes;
-
+	text = field.childNodes[0];
 	var i = 0, timer = setInterval(function() {
 		if(i >= blocks.length) {
 			field.childNodes[1].classList.remove('passive-opacity');
 			field.childNodes[1].classList.add('active');
-			i=0;
+			i = 0;
 			clearInterval(timer);
 		} else {
-			blocks[i].classList.remove('passive-display');
+			text.appendChild(blocks[i]);
+			blocks[i].classList.remove('passive-opacity');
 			blocks[i].classList.add('active');
-			blocks[i].style.opacity = '1';
 			field.childNodes[0].scrollTop = field.childNodes[0].scrollHeight;
 			i++;
 		}
@@ -85,7 +86,8 @@ function parse(el) {
 }
 
 function render(content, isUpdate) {
-	var field = document.getElementById("field");
+	var field = document.getElementById("field"),
+			spans = [];
 
 	if(!field.childNodes.length) {
 		text = document.createElement("div");
@@ -107,9 +109,9 @@ function render(content, isUpdate) {
 	var span;
 	for(var i = 0; i < content.text.length; i++) {
 		span = document.createElement("span");
-		span.className = content.text[i][0] === "ch" ? "ch passive-display" : "au passive-display";
+		span.className = content.text[i][0] === "ch" ? "ch passive-opacity" : "au passive-opacity";
 		span.innerHTML = content.text[i][1];
-		text.appendChild(span);
+		spans.push(span);
 	}
 
 	var link;
@@ -120,6 +122,8 @@ function render(content, isUpdate) {
 		butt.onclick = goTo;
 		links.appendChild(butt);
 	}
+
+	return spans;
 }
 
 function issetClass(el, className) {
