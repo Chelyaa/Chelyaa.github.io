@@ -5,7 +5,7 @@ function goTo() {
 	ids = this.className.split(" ");
 	var pageNext = $("#"+ids[1]),
 			pageCurr = $("#"+ids[0]),
-			field = $("field");
+			field = $("#field")[0];
 
 	field.childNodes[1].classList.remove('active');
 	field.childNodes[1].classList.add('passive-opacity');
@@ -25,29 +25,33 @@ function showBlocks(elId) {
 	if(elId.split("--")[1] != currChapter) {
 		blocks = render(content, true);
 		currChapter = elId.split("--")[1];
-		$("#chapter").innerHTML = currChapter;
+		$("#chapter")[0].innerHTML = currChapter;
 	} else {
 		blocks = render(content, false);
 	}
 
-	text = $(".text")[0];
-	var i = 0, timer = setInterval(function() {
-		if(i >= blocks.length) {
-			field.childNodes[1].classList.remove('passive-opacity');
-			field.childNodes[1].classList.add('active');
-			i = 0;
-			clearInterval(timer);
-		} else {
-			text.appendChild(blocks[i]);
-			text.children[i].animate({
-				opacity: 1
-			}, 1000);
-			// blocks[i].classList.remove('passive-opacity');
-			// blocks[i].classList.add('active');
-			field.childNodes[0].scrollTop = field.childNodes[0].scrollHeight;
+	text = field.childNodes[0];
+	showBlock(text, blocks, 0);
+}
+
+function showBlock(text, blocks, i) {
+	if(i < blocks.length) {
+		var block = blocks[i],
+				duraction = block[1];
+
+		text.appendChild(block[0]);
+		setTimeout(function() {
+			block[0].classList.remove('passive-opacity');
+			block[0].classList.add('active');
+
 			i++;
-		}
-	}, 1500);
+			showBlock(text, blocks, i);
+		}, Number(duraction));
+	} else {
+		document.getElementById("field").childNodes[1].classList.remove('passive-opacity');
+		document.getElementById("field").childNodes[1].classList.add('active');
+		return;
+	}
 }
 
 function showLinks(page, id) {
@@ -69,9 +73,9 @@ function parse(el) {
 				if(childs[i].childNodes[j].nodeName === "SPAN") {
 					var span = childs[i].childNodes[j];
 					if(issetClass(span, "ch")) {
-						content.text.push(["ch", span.innerHTML]);
+						content.text.push(["ch", span.innerHTML, span.classList[2]]);
 					} else {
-						content.text.push(["au", span.innerHTML]);
+						content.text.push(["au", span.innerHTML, span.classList[2]]);
 					}
 				}
 			}
@@ -111,11 +115,10 @@ function render(content, isUpdate) {
 
 	var span;
 	for(var i = 0; i < content.text.length; i++) {
-		span = $("<span></span>")[0];
-		// span.className = content.text[i][0] === "ch" ? "ch passive-opacity" : "au passive-opacity";
-		span.className = content.text[i][0] === "ch" ? "ch" : "au";
+		span = document.createElement("span");
+		span.className = content.text[i][0] === "ch" ? "ch passive-opacity" : "au passive-opacity";
 		span.innerHTML = content.text[i][1];
-		spans.push(span);
+		spans.push([span, content.text[i][2]]);
 	}
 
 	var link;
