@@ -43,27 +43,29 @@ var ball = new Graphics();
 stage.addChild(ball);
 
 var blocks = new Graphics(),
-		blStartX = 100,
-		blStartY = 100,
-		blMarginH = 10,
-		blMarginV = 10,
-		blM = 10,
-		blN = 10,
-		blWidth = 20,
-		blHeight = 10,
+		blStartX = 20,
+		blStartY = 20,
+		blMarginH = 20,
+		blMarginV = 40,
+		blM = 13,
+		blN = 5,
+		blWidth = 80,
+		blHeight = 40,
 		blocksObj = new Array(blN);
+stage.addChild(blocks);
 for(var i = 0; i < blN; i++) {
 	blocksObj[i] = new Array(blM);
 	for(var j = 0; j < blM; j++) {
 		blocksObj[i][j] = {
-			centerX: blStartX+(blWidth+blMarginH)*j,
-			centerY: bY,
-			x: bX-bRadius,
-			y: bY-bRadius,
-			halfWidth: bRadius,
-			halfHeight: bRadius,
-			width: bRadius*2,
-			height: bRadius*2
+			centerX: blStartX+(blWidth/2+blMarginH)*j,
+			centerY: blStartY+(blHeight/2+blMarginV)*i,
+			x: blStartX+(blWidth+blMarginH)*j,
+			y: blStartY+(blHeight/2+blMarginV)*i,
+			halfWidth: blWidth/2,
+			halfHeight: blHeight/2,
+			width: blWidth,
+			height: blHeight,
+			destroy: false
 		}
 	}
 }
@@ -94,9 +96,26 @@ function update() {
 	ballObj.centerX = bX;
 	ballObj.centerY = bY;
 
-	if (hitTestRectangle(platformObj, ballObj)) {
+	if(hitTestRectangle(platformObj, ballObj)) {
 	  bVy = -bVy;
 	}
+	var block;
+	for(var i = 0; i < blocksObj.length; i++) {
+		for(var j = 0; j < blocksObj[i].length; j++) {
+			block = blocksObj[i][j];
+			if(!block.destroy && hitTestRectangle(block, ballObj)) {
+			  blocksObj[i][j].destroy = true;console.log(block.y+block.height - ballObj.y, block.y+block.height < ballObj.y);
+			  if(block.y+block.height > ballObj.centerY+bRadius || block.y+block.height < ballObj.y+bRadius) {
+			  	bVy = -bVy;
+			  } else if((block.x+blWidth < ballObj.x+bRadius  || block.x+blWidth > ballObj.centerX+bRadius) && block.y < ballObj.centerY) {
+			  	bVx = -bVx;
+			  }
+			}
+		}
+	}
+
+	blocks.clear();
+	renderBlocks();
 
 	renderer.render(stage);
 	requestAnimationFrame(update);
@@ -104,9 +123,16 @@ function update() {
 update();
 
 function renderBlocks() {
-
+	var block;
 	for(var i = 0; i < blN; i++) {
-
+		for(var j = 0; j < blM; j++) {
+			block = blocksObj[i][j];
+			if(!block.destroy) {
+				blocks.beginFill(0x66CCFF);
+				blocks.drawRect(block.x, block.y, block.width, block.height);
+				blocks.endFill();
+			}
+		}
 	}
 }
 
@@ -130,8 +156,8 @@ document.addEventListener("keypress", function(e) {
 			break;
 		case 32:
 			if(startFlag) {
-				bVx = random(2, 4);
-				bVy = -random(2, 4);
+				bVx = random(3, 6);
+				bVy = -random(3, 6);
 				startFlag = false;
 			}
 			break;
