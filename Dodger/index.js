@@ -7,8 +7,9 @@ var stage = new PIXI.Container();
 renderer.render(stage);
 
 var player = new Graphics(),
-		plWidth = 25,
-		plHeight = 25,
+		plStep = 15,
+		plWidth = 24,
+		plHeight = 24,
 		plX = window.innerWidth/2-plWidth/2,
 		plY = window.innerHeight-50,
 		plObj = {
@@ -25,7 +26,7 @@ stage.addChild(player);
 
 var blocks = new Graphics(),
 		blocksArr = [],
-		seed = 0.99,
+		seed = 0.9,
 		speed = 2;
 stage.addChild(blocks);
 
@@ -46,8 +47,8 @@ function update() {
 		block.y += speed;
 	}
 
-	if(detectColision())
-		lose();
+	// if(detectColision())
+		// lose();
 
 	if(Math.random() > seed) 
 		createBlock();
@@ -83,33 +84,32 @@ function createBlock() {
 }
 
 document.addEventListener("keypress", function(e) {
-	var code = e.charCode || e.keyCode,
-			step = 15;
+	var code = e.charCode || e.keyCode;
 	switch(code) {
 		case 119://up
-			if(plY + step < window.innerHeight-plHeight) {
-				plY -= step;
+			if(plY - plStep < window.innerHeight-plHeight) {
+				plY -= plStep;
 			} else {
 				plY = window.innerHeight-plHeight;
 			}
 			break;
 		case 115://down
-			if(plY + step < window.innerHeight-plHeight) {
-				plY += step;
+			if(plY + plStep < window.innerHeight-plHeight) {
+				plY += plStep;
 			} else {
 				plY = window.innerHeight-plHeight;
 			}
 			break;
 		case 100://right
-			if(plX + step < window.innerWidth-plWidth) {
-				plX += step;
+			if(plX + plStep < window.innerWidth-plWidth) {
+				plX += plStep;
 			} else {
 				plX = window.innerWidth-plWidth;
 			}
 			break;
 		case 97://left
-			if(plX - step > 0) {
-				plX -= step;
+			if(plX - plStep > 0) {
+				plX -= plStep;
 			} else {
 				plX = 0;
 			}
