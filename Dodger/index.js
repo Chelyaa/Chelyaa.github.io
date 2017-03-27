@@ -26,10 +26,10 @@ stage.addChild(player);
 
 var blocks = new Graphics(),
 		blocksArr = [],
-		seed = 0.9,
+		seed = 0.99,
 		speed = 2;
 stage.addChild(blocks);
-
+document.getElementById("level").innerHTML = 10000 - Math.floor(seed*10000) - 100;
 update();
 function update() {
 	renderBlocks();
@@ -47,8 +47,8 @@ function update() {
 		block.y += speed;
 	}
 
-	// if(detectColision())
-		// lose();
+	if(detectColision())
+		lose();
 
 	if(Math.random() > seed) 
 		createBlock();
@@ -74,6 +74,7 @@ function renderBlocks() {
 
 function createBlock() {
 	seed = seed > 0 ? seed - 0.0001 : 0;
+	document.getElementById("level").innerHTML = 10000 - Math.floor(seed*10000) - 100;
 	var block = {
 		width: random(20, 30),
 		height: random(20, 30),
