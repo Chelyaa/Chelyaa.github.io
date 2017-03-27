@@ -7,7 +7,7 @@ var points = 11,
 		tr = new Graphics();
 stage.addChild(tr);
 
-step();
+// step();
 function step() {
 	var tree = [[{x: plX+plWidth/2, y: plY+plHeight/2, id: idNode}, []]];
 	tree = buildTree(tree);
