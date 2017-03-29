@@ -1,18 +1,23 @@
-var flippers = document.getElementsByClassName("flipper");
+var table = document.getElementById("table"),
+		colors = ["red", "blue", "yellow", "green"],
+		field = new Array(2);
 
-for(var i = 0; i < flippers.length; i++) {
-	flippers[i].onclick = addCounter(flippers[i]);
+init();
+
+function init() {
+	for(var i = 0; i < field.length; i++) {
+		field[i] = new Array(8);
+	}
+
+	
 }
 
-function addCounter(flipper) {
-	var counter = 0,
-			$flipper = flipper;
-
-	return function() {
-		counter = counter ? 0 : 1;
-		if(counter) 
-			$flipper.classList.add("flip");
-		else
-			$flipper.classList.remove("flip");
+function setListeners() {
+	var flippers = document.getElementsByClassName("card");
+	for(var i = 0; i < flippers.length; i++) {
+		flippers[i].onclick = function() {
+			if(!this.static)
+				this.classList.toggle('flipped');
+		}
 	}
 }
