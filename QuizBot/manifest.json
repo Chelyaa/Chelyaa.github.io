@@ -1,0 +1,60 @@
+//  {
+//   "manifest_version": 2,
+//   // "content_security_policy": "script-src 'self' https://www.google.com; object-src 'self'",
+//   "name": "CastleQuizSolver",
+//   "version": "1.0",
+  
+//   "web_accessible_resources": [
+//     "/injected.js"
+//   ],
+//   "icons": {
+//     "128": "128.png"
+//   },
+//   "content_scripts": [
+//     {
+//       "matches": [ "*://*/*" ],
+//       "js": [ "background.js" ],
+//       "run_at": "document_end"
+//     }
+//   ],
+//   // "background": {
+//   //   "scripts": ["background.js"]
+//   // },
+//   "permissions": [
+//     "https://castlequizsolver.000webhostapp.com/*"
+//   ],
+
+//   "browser_action": {
+//     "default_title": "CastleQuizSolver",
+//     "default_icon": "128.png",
+//     "default_popup": "popup.html"
+//   }
+//   // "page_action" : {
+//   //   "default_icon": {            
+//   //     "128": "128.png"
+//   //   },
+//   //   "default_title": "CastleQuizSolver", 
+//   //   "default_popup": "popup.html"
+//   // }
+// }
+{
+  "name": "BOT for pernatsk",
+  "version": "0.1",
+  "manifest_version": 2,
+  "content_scripts": [
+    {
+      "matches": [ "*://*/*" ],
+      "js": [ "content.js" ],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": [
+    "storage"
+  ],
+  "web_accessible_resources": [
+    "injected.js"
+  ]
+}
