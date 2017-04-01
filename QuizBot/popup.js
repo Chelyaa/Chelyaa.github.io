@@ -21,12 +21,15 @@ document.getElementById("butt").addEventListener("click", function() {
 //b-hexagon-map
 //b-battle-cell_enemy-owned
 //b-battle-cell_user-owned
+//g-icon_img_duel-result-victory
+//g-icon_img_duel-result-defeat
+//g-icon_img_duel-result-draw
 /*
 		0_1
 1_0			0_2
 		1_1
- 2_0		1_2
+ 2_0	 1_2
  		2_1
- 3_0		2_2
+ 3_0	 2_2
  		3_1
 4_0			3_2
