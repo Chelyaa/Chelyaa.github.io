@@ -7,12 +7,10 @@ var history = [],
 		stepOfStrategy = 0,
 		timer,
 		duelTimer,
-		isMyStep = false,
 		isDuel = false,
 		isStartDuel = false,
 		isVictory = false,
 		isDefeat = false,
-		isEndDraw = false,
 		isDraw = false,
 		drawNum = 0;
 
@@ -45,28 +43,40 @@ function start() {
 	console.log("Start");
 	var oldQuestion;
 	timer = setInterval(function() {
-		if(document.getElementsByClassName("g-icon_img_duel-result-draw")[0] == undefined && isDraw) {
-			isDraw = false;
-		}
-		if(document.getElementsByClassName("g-icon_img_duel-result-draw")[0] != undefined && isDuel && !isEndDraw && !isDraw) {
-			console.log("Duel draw");
-			isDraw = true;
-			drawNum++;
-			if(drawNum >= 3) {
-				isDuel = false;
-				isEndDraw = true;
-				drawNum = 0;
+		if(document.getElementsByClassName("g-icon_img_duel-result-draw")[0] != undefined) {
+			drawNum++;console.log("Num of draw: " + drawNum);
+			if(isDuel == true && isDraw == false && drawNum >= 3) {
+				console.log("Duel draw");
+				clearInterval(duelTimer);
 				stepOfStrategy++;
+				isDraw = true;
+				s = 0;
+				setTimeout(function() {
+					isStartDuel = false;
+				}, 8000);
 			}
 		}
-		if(document.getElementsByClassName("g-icon_img_duel-result-defeat")[0] != undefined && isDuel && !isDefeat) {
-			console.log("Duel defeat");
-			isDuel = false;
-			isDefeat = true;
+		if(document.getElementsByClassName("g-icon_img_duel-result-defeat")[0] != undefined) {
+			if(isDuel == true && isDefeat == false) {
+				console.log("Duel defeat");
+				clearInterval(duelTimer);
+				isDefeat = true;
+				s = 0;
+				setTimeout(function() {
+					isStartDuel = false;
+				}, 8000);
+			}
 		}
 		if(document.getElementsByClassName("g-icon_img_duel-result-victory")[0] != undefined) {
-			if(isDuel == true && !isVictory) {
+			if(isDuel == true && isVictory == false) {
+				console.log("Duel victory");
+				clearInterval(duelTimer);
+				stepOfStrategy++;
 				isVictory = true;
+				s = 0;
+				setTimeout(function() {
+					isStartDuel = false;
+				}, 8000);
 			} 
 			// if(!isDuel && !isVictory) {
 			// 	isVictory = true;
@@ -87,40 +97,31 @@ function start() {
 				modal = document.getElementsByClassName("g-modal_hidden")[0];
 
 		if(titleEL != undefined) {
-			if(titleEL.innerHTML == "Вопрос-дуэль" && modal == undefined) {
-				isDuel = true;
+			if(titleEL.innerHTML == "Вопрос-дуэль" && s == 1 && modal == undefined && !isStartDuel) {
 				isVictory = false;
 				isDefeat = false;
-				var newQuestion = document.getElementsByClassName("b-modal-content__title")[0].innerHTML;
-				if(newQuestion != oldQuestion) {
-					isDraw = false;
-					oldQuestion = newQuestion;
-					setTimeout(getSolve, 5000);
-				}
+				isDraw = false;
+				isStartDuel = true;
+				isDuel = true;console.log("isDuel: " + isDuel);
+				s = 0
 			} else if(titleEL.innerHTML == "Вопрос соперника" && modal == undefined && s == 1) {
 				setTimeout(step, 15000);
 				s = 0;
-				isMyStep = false;
 			} else if(titleEL.innerHTML == "Ваш вопрос" && modal != undefined && s == 0) {
 				s = 1;
-			} else if(titleEL.innerHTML == "Вопрос-дуэль" && modal != undefined && s == 0) {
+			} else if(titleEL.innerHTML == "Вопрос-дуэль" && modal != undefined && s == 0) {console.log("D");
 				s = 1;
-				if(isVictory) {
-					console.log("Duel victory");
-					stepOfStrategy++;
-					isDuel = false;
-					setTimeout(step, 15000);
-				}
+				isDuel = true;
 			} 
 		} else if(stepOfStrategy == 0 && s == 1) {
 			setTimeout(step, 4000);
 			s = 0;
 		}
 
-		// if(isDuel) {
-		// 	duelTimer = setInterval(getSolve, 10000);
-		// 	isDuel = false;
-		// }
+		if(isDuel) {
+			duelTimer = setInterval(getSolve, 10000);
+			isDuel = false;
+		}
 	}, 100);
 }
 
@@ -132,7 +133,6 @@ function stop() {
 }
 
 function step() {
-	isMyStep = true;
 	console.log("My step: " + stepOfStrategy);
 	var map = document.getElementsByClassName("b-hexagon-map")[0],
 	currStep = strategy[stepOfStrategy].split("_");
@@ -148,7 +148,7 @@ function step() {
 
 	setTimeout(function() {
 		getSolve();
-	}, 5000);
+	}, 4000);
 }
 
 function getSolve() {
