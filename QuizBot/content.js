@@ -152,9 +152,6 @@ function step() {
 }
 
 function getSolve() {
-	// if(isDuel)
-	// 	s = 1;
-
 	var title = document.getElementsByClassName("b-modal-content__info")[0].innerHTML,
 			waittingTime = 4000;
 
