@@ -1,0 +1,71 @@
+
+@import url('https://fonts.googleapis.com/css?family=Russo+One');
+@import url('https://fonts.googleapis.com/css?family=Dosis:400,700');
+
+body {
+	background-color: #FEEEB2;
+	transition: all 0.3s;
+}
+#canvas {
+	width: 500px;
+	margin: 0 auto;
+	text-align: center;
+}
+#canvas h1 {
+	font-family: 'Russo One', sans-serif;
+	font-size: 3em;
+	font-weight: normal;
+}
+.block {
+	width: 200px;
+	height: 200px;
+	display: inline-block;
+	transition: all 0.8s;
+}
+.block:hover {
+	cursor: pointer;
+}
+.opacity {
+	opacity: 0.3;
+}
+
+#score {
+	font-family: 'Dosis', sans-serif;
+	font-size: 2em;
+	margin: 0;
+}
+#lvl {
+	font-family: 'Dosis', sans-serif;
+	/*font-weight: bold;*/
+	font-size: 1.5em;
+}
+
+.red {
+	background-color: #DA2534;
+	border: 4px solid #991b1f;
+}
+.blue {
+	background-color: #3A738A;
+	border: 4px solid #1f3e49;
+}
+.green {
+	background-color: #83BF9D;
+	border: 4px solid #567c67;
+}
+.yellow {
+	background-color: #E0AF46;
+	border: 4px solid #9e7a32;
+}
+
+/*.red-text {
+	color: #DA2534;
+}
+.blue-text {
+	color: #3A738A;
+}
+.green-text {
+	color: #83BF9D;
+}
+.yellow-text {
+	color: #E0AF46;
+}*/
