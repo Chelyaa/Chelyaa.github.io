@@ -9,7 +9,8 @@ function init() {
 		field[i] = new Array(8);
 	}
 
-	
+	generateField();
+	console.log(field);
 }
 
 function setListeners() {
@@ -20,4 +21,43 @@ function setListeners() {
 				this.classList.toggle('flipped');
 		}
 	}
+}
+
+function generateField() {
+	(function recurse(color, field) {
+   	var x = random(0, 8);
+   			y = random(0, 2);
+
+   	if(field[y][x] === undefined) {
+   		field[y][x] = colors[color];
+   		if(!findColorInField(colors[color]))
+   			color++;
+   	} else {
+   		recurse(color);
+   	}
+
+   	if(color > 3)
+   		return;
+  	else 
+  		recurse(color);
+  })(0);
+}
+
+function random(min, max) {
+	return Math.floor(Math.random() * (max - min) + min);
+}
+
+function findColorInField(color) {
+	var c = 0;
+	for(var i = 0; i < field.length; i++) {
+		for(var j = 0; j < field[i].length; j++) {
+			if(field[i][j] === color)
+				c++;
+		}
+	}
+	console.log(c);
+	if(c == 2)
+		return false;
+	else 
+		return true;
 }
