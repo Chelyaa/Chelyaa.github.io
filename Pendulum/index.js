@@ -5,6 +5,7 @@ var height = window.innerHeight;
 var Pendulum = function() {
   var pn = this;
   this.flagPause = 0;
+  this.flagBrush = 1;
   this.posOfCircle1 = {
     x: width/2,
     y: 250
@@ -30,6 +31,9 @@ var Pendulum = function() {
 
   this.pause_unpause = function() {
     pn.flagPause = pn.flagPause ? 0 : 1;
+  }
+  this.brush = function() {
+    pn.flagBrush = pn.flagBrush ? 0 : 1;
   }
 
   this.start = function() {
@@ -111,13 +115,18 @@ var Pendulum = function() {
         });
       }
 
+
       var pos = constraints[1].bodyB.state.pos;
       poss.push({x: pos._[0], y: pos._[1]});
-      for(var i = 0, l = poss.length; i < l-2; i++) {
-        renderer.drawLine(poss[i], poss[i+2], {
-          lineWidth: 2,
-          strokeStyle: pn.colorOfBrush,
-        });
+      if(pn.flagBrush) {
+        for(var i = 0, l = poss.length; i < l-2; i++) {
+          renderer.drawLine(poss[i], poss[i+2], {
+            lineWidth: 2,
+            strokeStyle: pn.colorOfBrush,
+          });
+        }
+      } else {
+        // poss = [];
       }
     });
 
@@ -155,6 +164,7 @@ window.onload = function() {
 
   gui.add(pendulum, 'start');
   gui.add(pendulum, 'pause_unpause');
+  gui.add(pendulum, 'brush');
   
   document.getElementsByClassName('dg')[0].style.zIndex = 10000;
 };
