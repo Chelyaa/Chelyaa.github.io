@@ -1,0 +1,15 @@
+* {
+	transition: all 0.3s;
+}
+.microfield {
+	/*border: 1px solid black;*/
+	margin: 0px;
+}
+.microfield td {
+	padding: 10px 15px;
+	font-size: 20px;
+	border: 1px solid black;
+	font-family: Courier;
+	font-weight: bold;
+	margin-left: 0px;
+}
