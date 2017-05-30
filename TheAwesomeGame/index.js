@@ -1,5 +1,5 @@
-var width = 5,
-		height = 5,
+var width = 20,
+		height = 20,
 		field = new Array(width);
 for (var i = 0; i < field.length; i++) {
 	field[i] = new Array(height);
