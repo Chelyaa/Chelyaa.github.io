@@ -1,13 +1,14 @@
-var imgSrc = ["https://goo.gl/qKhk1Q", 
-							"https://img1.wsimg.com/fos/sales/cwh/8/images/cats-with-hats-shop-06.jpg", 
-							"https://pp.userapi.com/c637524/v637524379/94af/J4gn95PVzrQ.jpg",
-							"https://www.petfinder.com/wp-content/uploads/2012/11/91615172-find-a-lump-on-cats-skin-632x475.jpg",
-							"https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRYiUJ-kcvwCOqoihit1lcGLaq183DZTkaOQKsS88LW7dvW9S7f",
-							"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQzSwsWkOlX2pI0bs9Zs5QoaBgHvNtB2Av8y7Ddb0_-95qnfc8-",
-							"https://www.wired.com/wp-content/uploads/2014/10/cat-ft.jpg",
-							"https://img1.wsimg.com/fos/sales/cwh/8/images/cats-with-hats-shop-04.jpg",
-							"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLcq7RZ3bfsjgOYGgY4meIop6UpKjYaUBv_PrTqIukuZuAh4SZVg",
-							"http://r.ddmcdn.com/s_f/o_1/cx_0/cy_0/cw_300/ch_300/w_300/APL/uploads/2014/10/kitten-cuteness300.jpg"];
+var imgSrc = ["imgs/1.jpg",
+							"imgs/2.jpg",
+							"imgs/3.jpg",
+							"imgs/4.jpg",
+							"imgs/5.jpg",
+							"imgs/6.jpg",
+							"imgs/7.jpg",
+							"imgs/8.jpg",
+							"imgs/9.jpg",
+							"imgs/10.jpg"];
+							
 		body = document.getElementById("body"),
 		counter = 0;
 
