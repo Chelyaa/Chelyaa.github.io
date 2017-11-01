@@ -1,0 +1,15 @@
+body{
+	/*background-color: #3D6CD5;*/
+}
+img{
+  width: 28px;
+  height: 28px;
+  margin-bottom: -4px;
+}
+#canvas{
+	position: relative;
+	margin: 0 auto;
+}
+img{
+	margin: -4px;
+}

@@ -1,0 +1,41 @@
+LessonController
+	path(classpath:/lesson)
+	
+	@PostMapping()
+	public ResponseEntity<Lesson> createLesson(@RequestBody Lesson lesson)
+	creates lesson in DB from object
+	
+	@PutMapping()
+	public ResponseEntity<Lesson> updateLesson(@RequestBody Lesson lesson)
+	updates existing lesson in DB
+	
+	@GetMapping(value = "/get-one-by-id")
+	public ResponseEntity<Lesson> getLesson(Long lessonId)
+	gets one lesson from DB by primary key(lessonId)
+	
+	@DeleteMapping
+	public ResponseEntity deleteLesson(@RequestParam(required = true) Long lessonId)
+	deletes existing lesson from DB by primary key(lessonId)
+
+	@GetMapping(value = "/get-lessons-by-teacher-and-time")
+	public ResponseEntity<List<Lesson> > getLessonsByTeacherAndStartTime(String teacher, Long startTime)
+	gets list of lessons by their teacher and startTime
+	
+	@GetMapping(value = "/get-lessons-by-group-and-time")
+	public ResponseEntity<List<Lesson> > getLessonsByGroupAndStartTime(String group, Long startTime)
+	gets list of lessons by their group and startTime
+	
+	@GetMapping(value = "/get-lessons-by-group-and-period")
+	public ResponseEntity<List<Lesson>> getLessonsByGroupAndPeriod(String group, Long startTime, Long length)
+	gets list of lessons by their group and time period
+	
+	@GetMapping(value = "/get-lessons-by-course-and-period")
+	public ResponseEntity<List<Lesson>> getLessonsByCourseAndPeriod(int course, Long startTime, Long length) {
+	gets list of lessons by their course and time period
+	
+	@GetMapping(value = "/get-lessons-by-teacher-and-period")
+	public ResponseEntity<List<Lesson>> getLessonsByTeacherByPeriod(String teacherLogin, Long startTime, Long length) {
+	gets list of lessons by their teacher and time period	
+
+	
+

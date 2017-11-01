@@ -1,0 +1,26 @@
+table {
+	margin: 100px auto 0 auto;
+}
+
+td {
+	width:  60px;
+	height: 60px;
+	transition: all 0.5s;
+}
+
+.input {
+	width: 100px;
+	margin:  0 auto;
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+	font-family: Arial, sans-serif;
+	color: #333;
+	background-color: #fff;
+}
+
+h2 span {
+	font-family: monospace;
+}

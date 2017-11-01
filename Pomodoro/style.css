@@ -1,0 +1,83 @@
+/*@import url('https://fonts.googleapis.com/css?family=Dosis:500');
+@import url('https://fonts.googleapis.com/css?family=Play:700');
+
+body {
+	background-color: #343334;
+	color: #FFF;
+	font-family: Tahoma, sans-serif;
+	font-family: 'Dosis', sans-serif;
+}
+.title {
+	text-align: center;
+	font-family: 'Play', sans-serif;
+}
+.controls {
+	width: 300px;
+	margin-top: 50px;
+}
+.controls, .show {
+	display: inline-block;
+}
+.controller {
+	width: 100%;
+	text-align: center;
+	height: 100px;
+}
+.controller p {
+	font-size: 23px;
+	text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3);
+}
+.controller input {
+	width: 60px;
+	border: none;
+	padding: 5px 5px;
+	color: white;
+	border-bottom: 2px solid white;
+	background: none;
+	outline: none;
+	text-align: center;
+	font-size: 25px;
+	opacity: 0.8;
+	box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3);
+	transition: all 0.3s;
+}
+.controller input:focus {
+	opacity: 1;
+	width: 70px;
+}
+.controller button {
+	margin-top: -7px;
+	vertical-align: middle;
+	height: 44px;
+	padding: 2px 11px;
+	border: none;
+	font-family: Courier;
+	font-size: 28px;
+	color: white;
+	background: none;
+}
+.controller button:hover {
+	cursor: pointer;
+}
+.controller button:focus {
+	outline: none;
+}
+.controller .minus {
+	margin-right: -4px;
+}
+.controller .plus {
+	margin-left: -4px;
+}
+
+#start {
+	background: #ba4444;
+	padding: 6px 20px;
+	color: white;
+	font-size: 30px;
+	border: 3px solid #9b3939;
+	transition: all 0.3s;
+}
+#start:hover {
+	cursor: pointer;
+	background: #9b3939;
+}*/

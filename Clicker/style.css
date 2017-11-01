@@ -4,8 +4,12 @@
 body {
   background: #5a5ec9; 
   -moz-user-select: none;
--khtml-user-select: none;
-user-select: none;   
+  -khtml-user-select: none;
+  user-select: none;   
+  transition: all 0.1s;
+}
+.blue {
+  background: #6e74f4;
 }
 
 #clicker-field { 

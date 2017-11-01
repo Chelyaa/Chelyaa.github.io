@@ -1,18 +1,18 @@
 var dictionary;
 
-var generateText = function() {
+function generateText() {
 	var length = document.getElementById('length').value || 1,
 			rightStart = document.getElementById('check').checked;
 	document.getElementById('text').innerHTML = generateStr(dictionary, length, rightStart);
 }
 
-var generateDict = function() {
+function generateDict() {
 	var str = document.getElementById('str').value;
 	dictionary = createDict(str);
 	saveDict(dictionary);
 }
 
-var showInfo = function() {
+function showInfo() {
 	var str = document.getElementById('str').value,
 			info = document.getElementById('info-str');
 	str = str.replace(/\-/g, "");
@@ -29,7 +29,7 @@ var showInfo = function() {
 	info.innerHTML = "Количество слов в тексте: " + str.length;
 }
 
-var showInJSON = function() {
+function showInJSON() {
 	var json = document.getElementById('json'),
 			dict = {d : dictionary};
 
@@ -51,7 +51,7 @@ var showInJSON = function() {
   window.getSelection().removeAllRanges();  
 }
 
-var saveDict = function(dict) {
+function saveDict(dict) {
 	var dictionary = encodeURIComponent(JSON.stringify({d : dict}));
 	var req = getXmlHttp();
 	req.onreadystatechange = function() { 

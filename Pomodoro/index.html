@@ -2,13 +2,42 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Pomodoro</title>
-
+	<title id="title">Time manager</title>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	
+	<h1 class="title">Time Manager</h1>
+	<div class="controls">
+		<div class="controller controls--sessions-count">
+			<p>Sessions count</p>
+			<button class="minus">-</button>
+			<input id="sc" type="text" value="4">
+			<button class="plus">+</button>
+		</div>
+		<div class="controller controls--long-break-length">
+			<p>Length of long break</p>
+			<button class="minus">-</button>
+			<input id="llb" type="text" value="15">
+			<button class="plus">+</button>
+		</div>
+		<div class="controller controls--session-length">
+			<p>Length of session</p>
+			<button class="minus">-</button>
+			<input id="ls" type="text" value="25">
+			<button class="plus">+</button>
+		</div>
+		<div class="controller controls--short-break-length">
+			<p>Length of short break</p>
+			<button class="minus">-</button>
+			<input id="lsb" type="text" value="5">
+			<button class="plus">+</button>
+		</div>
+	</div>
+	<div class="show">
+		<button id="start">Start</button>
+	</div>
 
 	<script src="index.js"></script>
+	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </body>
 </html>

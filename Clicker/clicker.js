@@ -15,6 +15,7 @@ function render() {
   perSecEl.innerHTML = perSec;
   costPerClickEl.innerHTML = costPerClick;
   costPerSecEl.innerHTML = costPerSec;
+  document.title = counter;
 }
 
 render();
@@ -22,6 +23,13 @@ document.getElementById("clicker-field").onclick = function() {
   counter += perClick;
   render();
 }
+document.getElementById("clicker-field").onmousedown = function() {
+  document.body.classList.add('blue');
+  setTimeout(function() {
+    document.body.classList.remove('blue');
+  }, 400);
+}
+
 
 document.getElementById("up-per-click").onclick = function() {
   if(counter - costPerClick >= 0) {
@@ -42,5 +50,11 @@ document.getElementById("up-per-second").onclick = function() {
 
 setInterval(function() {
   counter += perSec;
+  for(var i = 0; i < perSec; i++) {
+    document.body.classList.add('blue');
+    setTimeout(function() {
+      document.body.classList.remove('blue');
+    }, 400);
+  }
   render();
 }, 1000);

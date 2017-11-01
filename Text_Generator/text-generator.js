@@ -11,14 +11,12 @@ var createDict = function(str) {
 	str = str.split(" ");
 	str.unshift("%START%");
 
+	var start = Date.now();
 	for(var i = 0, c = 0; i < str.length; i++) {
-		var cstr = str[i],
-				flag = true;
+		var cstr = str[i];
+		cstr.toLowerCase();
 
-		if(cstr in dictionary) 
-			flag = false;
-
-		if(flag) {
+		if(!(cstr in dictionary)) {
 			dictionary[cstr] = {};
 			if(str[i+1] !== undefined) {
 				if(str[i+1] in dictionary[cstr]) {
@@ -39,7 +37,7 @@ var createDict = function(str) {
 		}
 	}
 
-	document.getElementById("info-dict").innerHTML = "Количество слов в словаре: " + Object.keys(dictionary).length;
+	document.getElementById("info-dict").innerHTML = "Количество слов в словаре: " + Object.keys(dictionary).length + "\n Время исполнения: " + (Date.now() - start) + " мс";
 	return dictionary;
 }
 
