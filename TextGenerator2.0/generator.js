@@ -7,11 +7,11 @@ if(argv.length > 2) {
 	switch(argv[2]) {
 		case '-gd':
 			if(!argv[3]) {
-				console.log("Correct format, dude: -gd <file>");
+				console.log("Correct format: -gd <file>");
 			} else {
 				var text = generator.prepareText(fs.readFileSync(argv[3])+'');
 				console.log("Number of words in text: " + text.length);
-				console.log("Just wait, dude...");
+				console.log("Please, wait...");
 
 				var start = Date.now();
 				var dict = generator.generateDict(text, generator.getDict());

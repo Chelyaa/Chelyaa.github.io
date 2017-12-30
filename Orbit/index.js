@@ -14,9 +14,9 @@ stage.addChild(satellite);
 var satelliteObj = {
 	x: window.innerWidth/2,
 	y: window.innerHeight/2-200,
-	vx: 4,
-	vy: 0,
-	ay: 0.00001
+	vx: 0.5,
+	vy: 0.00000,
+	ay: 0,
 }
 
 var orbit = new Graphics;
@@ -85,7 +85,7 @@ function getDistance(p1, p2) {
 			dy = p1.y - p2.y,
 			d = Math.sqrt(dx*dx + dy*dy);
 
-	return Math.floor(d*1000)/1000;
+	return (d*1000)/1000;
 }
 
 function isColision(p1, p2) {

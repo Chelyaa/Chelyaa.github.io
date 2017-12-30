@@ -1,15 +1,15 @@
 var page = require('webpage').create();
-page.clipRect = { top: 0, left: 0, width: 1366, height: 768 };
-page.viewportSize = {
-	width: 1366,
-	height: 768
-}
+// page.clipRect = { top: 0, left: 0, width: 1366, height: 768 };
+// page.viewportSize = {
+// 	width: 1366,
+// 	height: 768
+// }
 page.open('https://clevver.me/', function() {
 	// page.render("clevver.png");
-  page.evaluate(eva);
-  setTimeout(function() {
+  // page.evaluate(eva);
+  // setTimeout(function() {
 		 page.render('a.png');
-  }, 1000);
+  // }, 1000);
  
   phantom.exit()
 });

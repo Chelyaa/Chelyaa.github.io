@@ -1,4 +1,4 @@
-var maze = new Maze(20, 20);
+var maze = new Maze();
 
 function setup() {
 	createCanvas(maze.wB*maze.w+maze.wB, maze.hB*maze.h+maze.hB);

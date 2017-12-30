@@ -3,29 +3,33 @@ var fs = require('fs');
 var Generator = {
 
 	generateText: function(length, dict, rightStart) {
+		console.time("Start");
 		var str;
 		if(rightStart) {
 			str = ["%START%"];
 		} else {
-			var firstIndex = this.random(0, Object.keys(dict).length-1), 
-			i = 0;
-			for(word in dict) {
+			var keys = Object.keys(dict),
+					firstIndex = this.random(0, keys.length-1);
+
+			for(var i = 0; i < keys.length; i++) {
 				if(i == firstIndex) {
-					str = [word];
+					str = [keys[i]];
 					break;
 				}
-				i++;
 			}
 		}
 		var w = str[0];
 		for(var i = 0; i < length; i++) {
+			// console.time("Generate");
 			var o = dict[w],
 			n = 0,
 			p = [],
 			r = Math.random();
+			
 			for(var key in o) {
 				n += o[key];
 			}
+
 			for(var key in o) {
 				p.push([o[key]/n, key]);
 			}
@@ -38,6 +42,7 @@ var Generator = {
 				}
 			}
 			w = str[i+1];
+			// console.timeEnd("Generate");
 		}
 
 		str = str.toString();
@@ -45,6 +50,7 @@ var Generator = {
 		str = str.replace(/%START%/g, "");
 		str = str.replace(/%END%/g, ".");
 
+		console.timeEnd("Start");
 		return str;
 	},
 	prepareText: function(str) {
