@@ -18,12 +18,13 @@
 	<li><a href="https://Chelyaa.github.io/TheAwesomeGame/">The Awesome Game</a></li>
 	<li><a href="https://Chelyaa.github.io/Doge/">Doge</a></li>
 	<li><a href="https://Chelyaa.github.io/Biocolors/">Biocolors</a></li>
-	<li><a href="https://Chelyaa.github.io/Biocolors/">Biocolors</a></li>
-	<li><a href="https://Chelyaa.github.io/Biowords/">Biowords</a></li>
 	<li><a href="https://Chelyaa.github.io/Biowords/">Biowords</a></li>
 	<li><a href="https://Chelyaa.github.io/pattern/">Pattern</a></li>
 	<li><a href="https://Chelyaa.github.io/Orbit/">Orbit</a></li>
-	<li><a href="https://Chelyaa.github.io/Orbit/">Orbit</a></li>
+	<li><a href="https://Chelyaa.github.io/sapper/">Sapper</a></li>
+	<li><a href="https://Chelyaa.github.io/Snake/">Snake</a></li>
+	<li><a href="https://Chelyaa.github.io/tictactoy/">Tic Tac Toy</a></li>
+	<li><a href="https://Chelyaa.github.io/stars-sky/">Stars sky</a></li>
 	<li><a href="https://Chelyaa.github.io/groovy-movie/build/">Groovy Movie</a></li>
 </ul>
 
