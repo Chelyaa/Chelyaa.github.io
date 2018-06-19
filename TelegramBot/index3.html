@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input id="login" name="log"/>
+	<button onclick="isUniqueLogin()">asa</button>
+	
+	<!-- <script src="index.js"></script> -->
+	<script>
+		function getXmlHttp(){
+ 			 var xmlhttp;
+ 		try {
+    xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	  } catch (e) {
+	    try {
+	      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	    } catch (E) {
+	      xmlhttp = false;
+	    }
+	  }
+	  if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+	    xmlhttp = new XMLHttpRequest();
+	  }
+	  return xmlhttp;
+		}
+
+
+		function isUniqueLogin(){
+			var login = document.getElementById('loginValid').value;
+
+			var xmlhttp = new getXmlHttp();
+			xmlhttp.open('GET', 'http://127.0.0.1:8081/isUnique/' + login , true);
+			xmlhttp.send(null);
+			xmlhttp.onreadystatechange = function(){
+				if(xmlhttp.readyState === 4){
+					if(xmlhttp.status == 200){
+						var response = xmlhttp.responseText;
+						console.log(response);
+					}
+				}
+			}
+		}
+
+		function createUser(login, fisrtname, lastname, phone){
+
+			var login = document.getElementById('login').value;
+			var firstname = document.getElementById('firstname').value;
+			var lastname = document.getElementById('lastname').value;
+			var phone = document.getElementById('phone').value;
+
+			var xmlhttp = new getXmlHttp();
+			xmlhttp.open('GET', 'http://127.0.0.1:8081/createUser/' + login + '/' + firstname + '/' + lastname + '/' + phone , true);
+			xmlhttp.send(null);
+			xmlhttp.onreadystatechange = function(){
+				if(xmlhttp.readyState === 4){
+					if(xmlhttp.status == 200){
+						var response = xmlhttp.responseText;
+						console.log(response);
+					}
+				}
+			}
+		}
+</script>
+</body>
+</html>

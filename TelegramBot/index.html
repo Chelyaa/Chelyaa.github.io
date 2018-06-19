@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Telegram Bot - Globalweb_bot</title>
+  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
+  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.js"></script> -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="sass/main.css">
+  <link rel="stylesheet" href="all-css/main.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center">Управление базой</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-3">
+        <h3 class="text-center">Проверка логина</h3>
+        <!-- <form> -->
+          <input type="Login" class="form-control" id="loginValid" placeholder="Login">
+          <button id="isUniqueBtn" class="btn btn-success" onclick="isUniqueLogin()">Проверить</button>
+        <!-- </form> -->
+      </div>
+      <div class="col-md-4">
+        <h3 class="text-center">Добавление клиента</h3>
+        <!-- <form action="#"> -->
+          <input type="Login" class="form-control" id="loginUser" placeholder="Login">
+          <input type="text" class="form-control" id="firstname" placeholder="First_Name">
+          <input type="text" class="form-control" id="lastname" placeholder="Last_Name">
+          <input type="phone" class="form-control" id="phone" placeholder="Phone">
+          <button id="createUserBtn" class="btn btn-success" onclick="createUser()">Добавить</button>
+        <!-- </form> -->
+      </div>
+      <div class="col-md-3">
+        <h3 class="text-center">Добавление Заказа</h3>
+        <!-- <form action="#"> -->
+          <input type="Login" class="form-control" id="loginOrder" placeholder="Login">
+          <input type="text" class="form-control" id="numberOrder" placeholder="Номер заказа">
+          <input type="text" class="form-control" id="packageServices" placeholder="Пакет услуг">
+          <input type="text" class="form-control" id="cost" placeholder="К оплате">
+          <input type="text" class="form-control" id="manager" placeholder="Отвечающий менеджер">
+          <input type="phone" class="form-control" id="phoneOfManager" placeholder="Номер менеджера">
+          <input type="phone" class="form-control" id="status" placeholder="Статус">
+          <button id="createOrderBtn" class="btn btn-success" onclick="createOrder()">Добавить</button>
+        <!-- </form> -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function getXmlHttp(){
+       var xmlhttp;
+    try {
+    xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+    } catch (e) {
+      try {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      } catch (E) {
+        xmlhttp = false;
+      }
+    }
+    if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+      xmlhttp = new XMLHttpRequest();
+    }
+    return xmlhttp;
+    }
+
+
+    function isUniqueLogin(){
+      var login = document.getElementById('loginValid').value;
+
+      var xmlhttp = new getXmlHttp();
+      xmlhttp.open('GET', 'http://127.0.0.1:8081/isUnique/' + login , true);
+      xmlhttp.send(null);
+      xmlhttp.onreadystatechange = function(){
+        if(xmlhttp.readyState === 4){
+          if(xmlhttp.status == 200){
+            var response = xmlhttp.responseText;
+
+            var btn = document.getElementById('isUniqueBtn');
+            btnClass = btn.className;
+            if(response == '1'){
+              btn.innerHTML = 'Уникальный';
+              // btn.className += ' green';
+            }else{
+              btn.innerHTML = 'Не уникальный';
+              // btn.className += ' red';
+            }
+
+            setTimeout(function(){
+              btn.innerHTML = "Проверить";
+              // btn.clasName = btnClass;
+            }, 2000);
+          }
+        }
+      }
+    }
+
+    function createUser(){
+
+      var login = encodeURIComponent(document.getElementById('loginUser').value);
+      var firstname = encodeURIComponent(document.getElementById('firstname').value);
+      var lastname = encodeURIComponent(document.getElementById('lastname').value);
+      var phone = encodeURIComponent(document.getElementById('phone').value);
+
+      var xmlhttp = new getXmlHttp();
+      xmlhttp.open('GET', 'http://127.0.0.1:8081/createUser/' + login + '/' + firstname + '/' + lastname + '/' + phone , true);
+      xmlhttp.send(null);
+      xmlhttp.onreadystatechange = function(){
+        if(xmlhttp.readyState === 4){
+          if(xmlhttp.status == 200){
+            var response = xmlhttp.responseText;
+            // alert("Успешно создан пользователь с следующими характеристиками:\n" + "Логин: " + login + "\nИмя: " + firstname + "\n" + "Фамилия: " + lastname + "\nНомер: " + phone);
+            var btn = document.getElementById('createUserBtn');
+            if(response == 'OK'){
+              btn.innerHTML = 'Успешно';
+            }
+            setTimeout(function(){
+              btn.innerHTML = "Добавить";
+            }, 2000);
+          }
+        }
+      }
+    }
+
+    function createOrder(){
+      var login = encodeURIComponent(document.getElementById('loginOrder').value);
+      var numberOrder = encodeURIComponent(document.getElementById('numberOrder').value);
+      var packageServices = encodeURIComponent(document.getElementById('packageServices').value);
+      var cost = encodeURIComponent(document.getElementById('cost').value);
+      var manager = encodeURIComponent(document.getElementById('manager').value);
+      var phoneOfManager = encodeURIComponent(document.getElementById('phoneOfManager').value);
+      var status = encodeURIComponent(document.getElementById('status').value);
+
+      var xmlhttp = new getXmlHttp();
+      xmlhttp.open('GET', 'http://127.0.0.1:8081/createOrder/' + login + '/' + numberOrder + '/' + packageServices + '/' + cost + '/' + manager + '/' + phoneOfManager + '/' + status, true);
+      xmlhttp.send(null);
+      xmlhttp.onreadystatechange = function(){
+        if(xmlhttp.readyState === 4){
+          if(xmlhttp.status == 200){
+            var response = xmlhttp.responseText;
+            // alert("Успешно создан заказ с следующеми характеристиками: \n" + "Логин пользователя: " + login + "\n" + "")
+            var btn = document.getElementById('createOrderBtn');
+            if(response == 'OK'){
+              btn.innerHTML = 'Успешно';
+            }
+            setTimeout(function(){
+              btn.innerHTML = "Добавить";
+            }, 2000);
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>

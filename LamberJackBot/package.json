@@ -1,0 +1,24 @@
+{
+  "name": "lamberjackbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --progress -p",
+    "watch": "webpack --progress --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "glob": "^7.1.2",
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "html2canvas": "^1.0.0-alpha.9",
+    "pixi.js": "^4.7.0"
+  }
+}

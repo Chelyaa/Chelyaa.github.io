@@ -1,0 +1,25 @@
+#canvas {
+	position: relative;
+	top: 0;
+	left: 0;
+}
+#tb {
+	margin: 0 auto;
+	border: 2px solid black;
+}
+td {
+	transition: opacity 0.3s;
+	border: 1px solid gray;
+	width: 23px;
+	height: 23px;
+	text-align: center;
+}
+td:hover {
+	cursor: pointer;
+	opacity: 0.7;
+}
+.close {
+	background-color: #3b96d3;
+}
+.open {
+}

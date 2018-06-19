@@ -1,0 +1,18 @@
+h1 {
+  text-transform: uppercase; }
+
+input {
+  margin-bottom: 5px; }
+
+input[placeholder] {
+  text-align: center; }
+
+button {
+  width: 100%;
+  text-transform: uppercase; }
+
+.red {
+	background-color: #F00;}
+
+.green {
+	color: #0F0;}

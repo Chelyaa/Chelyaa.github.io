@@ -1,0 +1,56 @@
+#canvas {
+	position: relative;
+	top: 0;
+	left: 0;
+}
+#field {
+	width: 309px;
+	margin: 0 auto;
+	/*border: 2px solid black;*/
+}
+
+td {
+	border: 1px solid black;
+	text-align: center;
+	transition: opacity 0.3s;
+	width: 25px;
+	height: 25px;
+	background-color: #dbdbdb;
+	border-radius: 2px;
+	font-family: Courier;
+	font-weight: bold;
+}
+td:hover {
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+table {
+	display: inline-block;
+	/*margin-bottom: -4px;*/
+	margin: 1px 3px;
+	padding: 0;
+	border: 1px solid black;
+	background-color: #33617a;
+}
+
+.red {
+	color: red;
+}
+.blue  {
+	color: blue;
+}
+.current {
+	background-color: #172c38;
+}
+#step {
+	text-align: center;
+	font-family: Courier;
+	font-size: 40px;
+}
+.x {
+	background-color: red;
+}
+.o {
+	background-color: blue;
+}
