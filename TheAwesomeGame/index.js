@@ -4,6 +4,7 @@
 */
 init(20, 20, [['#4f1a1a', '#381212'], ['#155625', '#0d3517']]);
 
+var currX, currY;
 function init(width, height, colors) {
 	var field = new Array(height);
 	for(var i = 0; i < field.length; i++) {
@@ -17,8 +18,8 @@ function init(width, height, colors) {
 	var y = Math.floor(Math.random() * height);
 	field[y][x] = 1;
 
-	var currX = Math.floor(Math.random() * width);
-	var currY = Math.floor(Math.random() * height);
+	currX = Math.floor(Math.random() * width);
+	currY = Math.floor(Math.random() * height);
 	var coords = {x: 0, y: 0};
 
 	var room = createRoom(field, colors);
