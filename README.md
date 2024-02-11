@@ -1,4 +1,5 @@
 # Chelyaa.github.io
+This is a collection of some of the pet projects I did in high school
 <a href="https://chelyaa.github.io/">Chelyaa.github.io</a>
 <ul>
 	<li><a href="https://Chelyaa.github.io/qbook/">QBook</a></li>
